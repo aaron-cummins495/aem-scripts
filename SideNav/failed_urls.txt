@@ -1,0 +1,52 @@
+No nav found: https://www.american.edu/abroadatau/nav.cfm
+No nav found: https://www.american.edu/admissions/graduate-admissions/nav.cfm
+https://www.american.edu/annual-report/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/annual-report/nav.cfm
+No nav found: https://www.american.edu/aumaps/nav.cfm
+No nav found: https://www.american.edu/buildingAU/nav.cfm
+https://www.american.edu/cas/2024/wlc/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/cas/2024/wlc/nav.cfm
+https://www.american.edu/cas/2024/wlc/spanish/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/cas/2024/wlc/spanish/nav.cfm
+https://www.american.edu/cas/economics/impa/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/cas/economics/impa/nav.cfm
+https://www.american.edu/cas/economics/international/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/cas/economics/international/nav.cfm
+https://www.american.edu/cas/learn-more/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/cas/learn-more/nav.cfm
+https://www.american.edu/cas/mathstat/ms/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/cas/mathstat/ms/nav.cfm
+https://www.american.edu/cas/performing-arts/theatre/capstone/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/cas/performing-arts/theatre/capstone/nav.cfm
+https://www.american.edu/cas/psm/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/cas/psm/nav.cfm
+No nav found: https://www.american.edu/cas/psychology/cta/edit/nav.cfm
+No nav found: https://www.american.edu/cptools/examples/nav.cfm
+https://www.american.edu/finance/annual-report/2018-2019/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/finance/annual-report/2018-2019/nav.cfm
+No nav found: https://www.american.edu/hr/CDC/nav.cfm
+No nav found: https://www.american.edu/inclusive-excellence/ie-plan/nav.cfm
+No nav found: https://www.american.edu/kogod/autoindex/nav.cfm
+No nav found: https://www.american.edu/kogod/learn-more/nav.cfm
+No nav found: https://www.american.edu/kogod/wework/nav.cfm
+No nav found: https://www.american.edu/learning-communities/3yrscholars/nav.cfm
+No nav found: https://www.american.edu/learning-communities/auscholars/nav.cfm
+No nav found: https://www.american.edu/learning-communities/douglassscholars/nav.cfm
+https://www.american.edu/middlestates/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/middlestates/nav.cfm
+https://www.american.edu/online/online-program/master-of-science-in-data-science/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/online/online-program/master-of-science-in-data-science/nav.cfm
+No nav found: https://www.american.edu/online/online-program/masters-of-arts-in-economics-applied-economics-specialization/nav.cfm
+https://www.american.edu/provost/administration/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/provost/administration/nav.cfm
+No nav found: https://www.american.edu/provost/au-cornerstone/nav.cfm
+No nav found: https://www.american.edu/provost/gened/nav.cfm
+No nav found: https://www.american.edu/provost/ogps/executive-education/lsat-prep/nav.cfm
+No nav found: https://www.american.edu/provost/ogps/executive-education/strategic-foresight/nav.cfm
+No nav found: https://www.american.edu/provost/ogps/payments/nav.cfm
+No nav found: https://www.american.edu/provost/RiSE/nav.cfm
+https://www.american.edu/provost/undergrad/auexperience/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/provost/undergrad/auexperience/nav.cfm
+No nav found: https://www.american.edu/provost/undergrad/transfer/nav.cfm
+No nav found: https://www.american.edu/provost/universityretreat/nav.cfm
+No nav found: https://www.american.edu/research/taskforce/report/data/nav.cfm
+No nav found: https://www.american.edu/soc/communication-studies/ba/nav.cfm
+No nav found: https://www.american.edu/soc/communication-studies/ma/nav.cfm
+No nav found: https://www.american.edu/soc/Films-Across-Borders/nav.cfm
+https://www.american.edu/soe/special/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/soe/special/nav.cfm
+https://www.american.edu/soe/teachers/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/soe/teachers/nav.cfm
+No nav found: https://www.american.edu/spa/dpap/degrees/mpa/nav.cfm
+No nav found: https://www.american.edu/spa/dpap/degrees/mpp/nav.cfm
+No nav found: https://www.american.edu/spa/publicpurpose/nav.cfm
+https://www.american.edu/student-affairs/universitycenter/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/student-affairs/universitycenter/nav.cfm
+No nav found: https://www.american.edu/uoa/nav.cfm
+https://www.american.edu/vcl/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/vcl/nav.cfm
+No nav found: https://www.american.edu/whitehat/test/nav.cfm
+https://www.american.edu/year-in-review/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/year-in-review/nav.cfm
+https://www.american.edu/year-in-review/2020/nav.cfm -> 404 Client Error: Not Found for url: https://www.american.edu/year-in-review/2020/nav.cfm
