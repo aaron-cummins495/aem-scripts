@@ -4,9 +4,10 @@ from openpyxl import load_workbook
 from urllib.parse import urlparse
 import os
 import pandas as pd
+import cssutils
 
 # Config
-TEMPLATE_PATH = "/conf/au/settings/dam/cfm/models/side-nav-cf-model"   # Excel with a column "URL"
+TEMPLATE_PATH = "/conf/au/settings/dam/cfm/models/htmlEmbed"
 OUTPUT_XLSX = "output.xlsx"
 BASE_CF_PATH = "/content/dam/au/cf/html"
 BASE_PAGE_PATH = "/content/au"
@@ -16,7 +17,9 @@ def convert_url_to_path(url):
     parsed = urlparse(url)
     path = parsed.path
     dir_path = os.path.dirname(path)
-    new_path = f"{BASE_CF_PATH}{dir_path}"
+    filename = os.path.basename(path)
+    page_name, _ = os.path.splitext(filename)
+    new_path = f"{BASE_CF_PATH}{dir_path}/{page_name}"
     return new_path
 
 def get_page_name(url):
@@ -24,6 +27,31 @@ def get_page_name(url):
     filename = os.path.basename(path)
     page_name, _ = os.path.splitext(filename)
     return page_name
+
+def get_relevant_classes(css_parser, classList):
+    relevant_classes = ""
+    for rule in css_parser.cssRules:
+        if rule.type == rule.STYLE_RULE:
+            selector_text = rule.selectorText
+            for class_name in classList:
+                if f".{class_name}" in selector_text:
+                    processed_selectors = '.html-embed-wrapper ' + selector_text.replace(",", ", .html-embed-wrapper")
+                    if rule.parentRule is None:
+                        relevant_classes += f"{processed_selectors} {{{rule.style.cssText}}}\n"
+                    else:
+                        relevant_classes += f"{rule.parentRule.cssText} {{ {processed_selectors} {{{rule.style.cssText}}} }}\n"
+        elif rule.type == rule.MEDIA_RULE:
+            media_relevant = ""
+            for sub_rule in rule.cssRules:
+                if sub_rule.type == sub_rule.STYLE_RULE:
+                    selector_text = sub_rule.selectorText
+                    for class_name in classList:
+                        if f".{class_name}" in selector_text:
+                            processed_selectors = '.html-embed-wrapper ' + selector_text.replace(",", ", .html-embed-wrapper")
+                            media_relevant += f"{processed_selectors} {{{sub_rule.style.cssText}}}\n"
+            if media_relevant:
+                relevant_classes += f"@media {rule.media.mediaText} {{\n{media_relevant}}}\n"
+    return relevant_classes
 
 def expand_elements(
     input_file,
@@ -65,6 +93,9 @@ def expand_elements(
 
     headers = {"x-user-agent": "AU-AEM-Importer"}
 
+    # --- Parse legacy CSS ---
+    css_parser = cssutils.parseFile("au-styles.css")
+
     # --- Process URLs ---
     row_idx = 2
     cfs = []
@@ -86,15 +117,30 @@ def expand_elements(
                             out_sheet.cell(row=row_idx, column=1, value=url_val)
                             out_sheet.cell(row=row_idx, column=2, value=element_id)
                             out_sheet.cell(row=row_idx, column=3, value="✅")
+                            rawHtml = section.prettify()
+                            rawHtml = rawHtml.replace('/index.cfm', '/')
+                            rawHtml = rawHtml.replace('.cfm', '')
 
-                            title_tag = soup.find("title")
-                            title = title_tag.get_text(strip=True) if title_tag else get_page_name(url_val)
+                            class_list = []
+                            for child in section.descendants:
+                                if hasattr(child, 'get'):
+                                    class_attr = child.get('class')
+                                    if class_attr:
+                                        for cls in class_attr:
+                                            if cls not in class_list:
+                                                class_list.append(cls)
+                            print(class_list)
+                            relevant_css = get_relevant_classes(css_parser, class_list)
+                            with open("extracted_css.css", "w") as css_file:
+                                css_file.write(relevant_css)
+                            rawHtml = f"\n<style>\n{relevant_css}</style>" + rawHtml
+
                             cfs.append({
                                 "path": convert_url_to_path(url_val),   
-                                "name": get_page_name(url_val),
-                                "title": title,
+                                "name": element_id,
+                                "title": element_id,
                                 "template": TEMPLATE_PATH,
-                                "html": section.prettify()
+                                "html": rawHtml
                             })
                             row_idx += 1
                         else:

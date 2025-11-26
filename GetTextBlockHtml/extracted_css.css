@@ -1,0 +1,537 @@
+.html-embed-wrapper .col-lg-1,
+.html-embed-wrapper .col-lg-10,
+.html-embed-wrapper .col-lg-11,
+.html-embed-wrapper .col-lg-12,
+.html-embed-wrapper .col-lg-2,
+.html-embed-wrapper .col-lg-3,
+.html-embed-wrapper .col-lg-4,
+.html-embed-wrapper .col-lg-5,
+.html-embed-wrapper .col-lg-6,
+.html-embed-wrapper .col-lg-7,
+.html-embed-wrapper .col-lg-8,
+.html-embed-wrapper .col-lg-9,
+.html-embed-wrapper .col-md-1,
+.html-embed-wrapper .col-md-10,
+.html-embed-wrapper .col-md-11,
+.html-embed-wrapper .col-md-12,
+.html-embed-wrapper .col-md-2,
+.html-embed-wrapper .col-md-3,
+.html-embed-wrapper .col-md-4,
+.html-embed-wrapper .col-md-5,
+.html-embed-wrapper .col-md-6,
+.html-embed-wrapper .col-md-7,
+.html-embed-wrapper .col-md-8,
+.html-embed-wrapper .col-md-9,
+.html-embed-wrapper .col-sm-1,
+.html-embed-wrapper .col-sm-10,
+.html-embed-wrapper .col-sm-11,
+.html-embed-wrapper .col-sm-12,
+.html-embed-wrapper .col-sm-2,
+.html-embed-wrapper .col-sm-3,
+.html-embed-wrapper .col-sm-4,
+.html-embed-wrapper .col-sm-5,
+.html-embed-wrapper .col-sm-6,
+.html-embed-wrapper .col-sm-7,
+.html-embed-wrapper .col-sm-8,
+.html-embed-wrapper .col-sm-9,
+.html-embed-wrapper .col-xs-1,
+.html-embed-wrapper .col-xs-10,
+.html-embed-wrapper .col-xs-11,
+.html-embed-wrapper .col-xs-12,
+.html-embed-wrapper .col-xs-2,
+.html-embed-wrapper .col-xs-3,
+.html-embed-wrapper .col-xs-4,
+.html-embed-wrapper .col-xs-5,
+.html-embed-wrapper .col-xs-6,
+.html-embed-wrapper .col-xs-7,
+.html-embed-wrapper .col-xs-8,
+.html-embed-wrapper .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.html-embed-wrapper .col-xs-1,
+.html-embed-wrapper .col-xs-10,
+.html-embed-wrapper .col-xs-11,
+.html-embed-wrapper .col-xs-12,
+.html-embed-wrapper .col-xs-2,
+.html-embed-wrapper .col-xs-3,
+.html-embed-wrapper .col-xs-4,
+.html-embed-wrapper .col-xs-5,
+.html-embed-wrapper .col-xs-6,
+.html-embed-wrapper .col-xs-7,
+.html-embed-wrapper .col-xs-8,
+.html-embed-wrapper .col-xs-9 {
+    float: left;
+}
+.html-embed-wrapper .col-xs-12 {
+    width: 100%;
+}
+.html-embed-wrapper .spacious-margins {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+@media (max-width: 767px) {
+    .html-embed-wrapper .text-block dl.tabular {
+        overflow: visible !important;
+    }
+}
+.html-embed-wrapper ol.spacious li,
+.html-embed-wrapper ul.spacious li {
+    margin-bottom: 25px;
+}
+.html-embed-wrapper ol.spacious li ol,
+.html-embed-wrapper ol.spacious li ul,
+.html-embed-wrapper ul.spacious li ol,
+.html-embed-wrapper ul.spacious li ul {
+    margin-top: 25px;
+}
+.html-embed-wrapper ol.spacious li:last-child,
+.html-embed-wrapper ul.spacious li:last-child {
+    margin-bottom: 0;
+}
+.html-embed-wrapper ol[class*="cols-"].spacious li,
+.html-embed-wrapper ul[class*="cols-"].spacious li {
+    padding: 0 0 25px;
+    margin: 0;
+}
+.html-embed-wrapper .col-sm-1 dl.tabular,
+.html-embed-wrapper .col-sm-2 dl.tabular,
+.html-embed-wrapper .col-sm-3 dl.tabular,
+.html-embed-wrapper .col-sm-4 dl.tabular,
+.html-embed-wrapper .col-sm-5 dl.tabular,
+.html-embed-wrapper .col-sm-6 dl.tabular,
+.html-embed-wrapper dl.tabular {
+    overflow: auto;
+}
+.html-embed-wrapper .col-sm-1 dl.tabular dt,
+.html-embed-wrapper .col-sm-2 dl.tabular dt,
+.html-embed-wrapper .col-sm-3 dl.tabular dt,
+.html-embed-wrapper .col-sm-4 dl.tabular dt,
+.html-embed-wrapper .col-sm-5 dl.tabular dt,
+.html-embed-wrapper .col-sm-6 dl.tabular dt,
+.html-embed-wrapper dl.tabular dt {
+    display: block;
+    font-weight: 700;
+    border-bottom: 1px solid #d2d2d2;
+    width: 100%;
+    margin: 20px 0 0;
+    padding: 2px 5px 2px 0;
+}
+.html-embed-wrapper .col-sm-1 dl.tabular dt:first-child,
+.html-embed-wrapper .col-sm-2 dl.tabular dt:first-child,
+.html-embed-wrapper .col-sm-3 dl.tabular dt:first-child,
+.html-embed-wrapper .col-sm-4 dl.tabular dt:first-child,
+.html-embed-wrapper .col-sm-5 dl.tabular dt:first-child,
+.html-embed-wrapper .col-sm-6 dl.tabular dt:first-child,
+.html-embed-wrapper dl.tabular dt:first-child {
+    margin-top: 10px;
+}
+.html-embed-wrapper .col-sm-1 dl.tabular dd,
+.html-embed-wrapper .col-sm-2 dl.tabular dd,
+.html-embed-wrapper .col-sm-3 dl.tabular dd,
+.html-embed-wrapper .col-sm-4 dl.tabular dd,
+.html-embed-wrapper .col-sm-5 dl.tabular dd,
+.html-embed-wrapper .col-sm-6 dl.tabular dd,
+.html-embed-wrapper dl.tabular dd {
+    display: block;
+    font-weight: 400;
+    width: 100%;
+    background: 0 0;
+    margin: 0 0 10px 0;
+}
+.html-embed-wrapper .col-sm-1 dl.tabular dd > a,
+.html-embed-wrapper .col-sm-2 dl.tabular dd > a,
+.html-embed-wrapper .col-sm-3 dl.tabular dd > a,
+.html-embed-wrapper .col-sm-4 dl.tabular dd > a,
+.html-embed-wrapper .col-sm-5 dl.tabular dd > a,
+.html-embed-wrapper .col-sm-6 dl.tabular dd > a,
+.html-embed-wrapper dl.tabular dd > a {
+    font-weight: 700;
+}
+.html-embed-wrapper .col-sm-1 dl.tabular dd > a.decor,
+.html-embed-wrapper .col-sm-2 dl.tabular dd > a.decor,
+.html-embed-wrapper .col-sm-3 dl.tabular dd > a.decor,
+.html-embed-wrapper .col-sm-4 dl.tabular dd > a.decor,
+.html-embed-wrapper .col-sm-5 dl.tabular dd > a.decor,
+.html-embed-wrapper .col-sm-6 dl.tabular dd > a.decor,
+.html-embed-wrapper dl.tabular dd > a.decor {
+    font-weight: 400;
+}
+.html-embed-wrapper .col-sm-1 dl.tabular.wide-term dt,
+.html-embed-wrapper .col-sm-2 dl.tabular.wide-term dt,
+.html-embed-wrapper .col-sm-3 dl.tabular.wide-term dt,
+.html-embed-wrapper .col-sm-4 dl.tabular.wide-term dt,
+.html-embed-wrapper .col-sm-5 dl.tabular.wide-term dt,
+.html-embed-wrapper .col-sm-6 dl.tabular.wide-term dt,
+.html-embed-wrapper dl.tabular.wide-term dt {
+    width: 100%;
+}
+.html-embed-wrapper .col-sm-1 dl.tabular.wide-term dd,
+.html-embed-wrapper .col-sm-2 dl.tabular.wide-term dd,
+.html-embed-wrapper .col-sm-3 dl.tabular.wide-term dd,
+.html-embed-wrapper .col-sm-4 dl.tabular.wide-term dd,
+.html-embed-wrapper .col-sm-5 dl.tabular.wide-term dd,
+.html-embed-wrapper .col-sm-6 dl.tabular.wide-term dd,
+.html-embed-wrapper dl.tabular.wide-term dd {
+    width: 100%;
+}
+.html-embed-wrapper .col-sm-1 dl.tabular.wide-term dd + dd,
+.html-embed-wrapper .col-sm-2 dl.tabular.wide-term dd + dd,
+.html-embed-wrapper .col-sm-3 dl.tabular.wide-term dd + dd,
+.html-embed-wrapper .col-sm-4 dl.tabular.wide-term dd + dd,
+.html-embed-wrapper .col-sm-5 dl.tabular.wide-term dd + dd,
+.html-embed-wrapper .col-sm-6 dl.tabular.wide-term dd + dd,
+.html-embed-wrapper dl.tabular.wide-term dd + dd {
+    margin-left: 0;
+}
+@media (min-width: 768px) {
+    .html-embed-wrapper dl.tabular dt {
+        float: left;
+        color: #343434;
+        background: 0 0;
+        width: 35%;
+        clear: left;
+        margin: 0 1% 10px 0;
+        padding: 0;
+        border: none;
+    }
+    .html-embed-wrapper dl.tabular dt:first-child {
+        margin-top: 0;
+    }
+    .html-embed-wrapper dl.tabular dd {
+        float: left;
+        width: 64%;
+        clear: none;
+        margin: 0 0 10px 0;
+    }
+    .html-embed-wrapper dl.tabular dd + dd {
+        margin-top: -5px;
+        margin-left: 36%;
+    }
+    .html-embed-wrapper dl.tabular.wide-term dt {
+        width: 60%;
+    }
+    .html-embed-wrapper dl.tabular.wide-term dd {
+        width: 39%;
+    }
+    .html-embed-wrapper dl.tabular.wide-term dd + dd {
+        margin-left: 61%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term dt {
+        width: 20%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term dt {
+        width: 20%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term dd {
+        width: 79%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term dd {
+        width: 79%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term dd + dd {
+        margin-left: 21%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term dd + dd {
+        margin-left: 21%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term.extra dt {
+        width: 12.5%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term.extra dt {
+        width: 12.5%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term.extra dd {
+        width: 86.5%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term.extra dd {
+        width: 86.5%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term.extra dd + dd {
+        margin-left: 13.5%;
+    }
+    .html-embed-wrapper dl.tabular.narrow-term.extra dd + dd {
+        margin-left: 13.5%;
+    }
+    .html-embed-wrapper dl.tabular.spacious {
+        margin-bottom: 15px;
+    }
+    .html-embed-wrapper dl.tabular.spacious {
+        margin-bottom: 15px;
+    }
+    .html-embed-wrapper dl.tabular.compact dd,
+    .html-embed-wrapper dl.tabular.compact dt {
+        margin-bottom: 10px;
+    }
+    .html-embed-wrapper dl.tabular.compact.extra dd,
+    .html-embed-wrapper dl.tabular.compact.extra dt {
+        margin-bottom: 0;
+    }
+    .html-embed-wrapper dl.tabular.no-bold dd,
+    .html-embed-wrapper dl.tabular.no-bold dt {
+        font-weight: 400;
+    }
+    .html-embed-wrapper dl.tabular.no-bold dd,
+    .html-embed-wrapper dl.tabular.no-bold dt {
+        font-weight: 400;
+    }
+}
+@media (min-width: 992px) {
+    .html-embed-wrapper .col-sm-1 dl.tabular dt,
+    .html-embed-wrapper .col-sm-2 dl.tabular dt,
+    .html-embed-wrapper .col-sm-3 dl.tabular dt,
+    .html-embed-wrapper .col-sm-4 dl.tabular dt,
+    .html-embed-wrapper .col-sm-5 dl.tabular dt,
+    .html-embed-wrapper .col-sm-6 dl.tabular dt,
+    .html-embed-wrapper dl.tabular dt {
+        float: left;
+        color: #343434;
+        background: 0 0;
+        width: 35%;
+        clear: left;
+        margin: 0 1% 10px 0;
+        padding: 0;
+        border: none;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular dt:first-child,
+    .html-embed-wrapper .col-sm-2 dl.tabular dt:first-child,
+    .html-embed-wrapper .col-sm-3 dl.tabular dt:first-child,
+    .html-embed-wrapper .col-sm-4 dl.tabular dt:first-child,
+    .html-embed-wrapper .col-sm-5 dl.tabular dt:first-child,
+    .html-embed-wrapper .col-sm-6 dl.tabular dt:first-child,
+    .html-embed-wrapper dl.tabular dt:first-child {
+        margin-top: 0;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular dd,
+    .html-embed-wrapper dl.tabular dd {
+        float: left;
+        width: 64%;
+        clear: none;
+        margin: 0 0 10px 0;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular dd + dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular dd + dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular dd + dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular dd + dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular dd + dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular dd + dd,
+    .html-embed-wrapper dl.tabular dd + dd {
+        margin-top: -5px;
+        margin-left: 36%;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.wide-term dt,
+    .html-embed-wrapper .col-sm-2 dl.tabular.wide-term dt,
+    .html-embed-wrapper .col-sm-3 dl.tabular.wide-term dt,
+    .html-embed-wrapper .col-sm-4 dl.tabular.wide-term dt,
+    .html-embed-wrapper .col-sm-5 dl.tabular.wide-term dt,
+    .html-embed-wrapper .col-sm-6 dl.tabular.wide-term dt,
+    .html-embed-wrapper dl.tabular.wide-term dt {
+        width: 60%;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.wide-term dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular.wide-term dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular.wide-term dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular.wide-term dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular.wide-term dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular.wide-term dd,
+    .html-embed-wrapper dl.tabular.wide-term dd {
+        width: 39%;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.wide-term dd + dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular.wide-term dd + dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular.wide-term dd + dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular.wide-term dd + dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular.wide-term dd + dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular.wide-term dd + dd,
+    .html-embed-wrapper dl.tabular.wide-term dd + dd {
+        margin-left: 61%;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.narrow-term dt,
+    .html-embed-wrapper .col-sm-2 dl.tabular.narrow-term dt,
+    .html-embed-wrapper .col-sm-3 dl.tabular.narrow-term dt,
+    .html-embed-wrapper .col-sm-4 dl.tabular.narrow-term dt,
+    .html-embed-wrapper .col-sm-5 dl.tabular.narrow-term dt,
+    .html-embed-wrapper .col-sm-6 dl.tabular.narrow-term dt,
+    .html-embed-wrapper dl.tabular.narrow-term dt {
+        width: 20%;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.narrow-term dt,
+    .html-embed-wrapper .col-sm-2 dl.tabular.narrow-term dt,
+    .html-embed-wrapper .col-sm-3 dl.tabular.narrow-term dt,
+    .html-embed-wrapper .col-sm-4 dl.tabular.narrow-term dt,
+    .html-embed-wrapper .col-sm-5 dl.tabular.narrow-term dt,
+    .html-embed-wrapper .col-sm-6 dl.tabular.narrow-term dt,
+    .html-embed-wrapper dl.tabular.narrow-term dt {
+        width: 20%;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.narrow-term dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular.narrow-term dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular.narrow-term dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular.narrow-term dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular.narrow-term dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular.narrow-term dd,
+    .html-embed-wrapper dl.tabular.narrow-term dd {
+        width: 79%;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.narrow-term dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular.narrow-term dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular.narrow-term dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular.narrow-term dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular.narrow-term dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular.narrow-term dd,
+    .html-embed-wrapper dl.tabular.narrow-term dd {
+        width: 79%;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper dl.tabular.narrow-term dd + dd {
+        margin-left: 21%;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular.narrow-term dd + dd,
+    .html-embed-wrapper dl.tabular.narrow-term dd + dd {
+        margin-left: 21%;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.spacious,
+    .html-embed-wrapper .col-sm-2 dl.tabular.spacious,
+    .html-embed-wrapper .col-sm-3 dl.tabular.spacious,
+    .html-embed-wrapper .col-sm-4 dl.tabular.spacious,
+    .html-embed-wrapper .col-sm-5 dl.tabular.spacious,
+    .html-embed-wrapper .col-sm-6 dl.tabular.spacious,
+    .html-embed-wrapper dl.tabular.spacious {
+        margin-bottom: 15px;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.spacious,
+    .html-embed-wrapper .col-sm-2 dl.tabular.spacious,
+    .html-embed-wrapper .col-sm-3 dl.tabular.spacious,
+    .html-embed-wrapper .col-sm-4 dl.tabular.spacious,
+    .html-embed-wrapper .col-sm-5 dl.tabular.spacious,
+    .html-embed-wrapper .col-sm-6 dl.tabular.spacious,
+    .html-embed-wrapper dl.tabular.spacious {
+        margin-bottom: 15px;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.compact dd,
+    .html-embed-wrapper .col-sm-1 dl.tabular.compact dt,
+    .html-embed-wrapper .col-sm-2 dl.tabular.compact dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular.compact dt,
+    .html-embed-wrapper .col-sm-3 dl.tabular.compact dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular.compact dt,
+    .html-embed-wrapper .col-sm-4 dl.tabular.compact dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular.compact dt,
+    .html-embed-wrapper .col-sm-5 dl.tabular.compact dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular.compact dt,
+    .html-embed-wrapper .col-sm-6 dl.tabular.compact dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular.compact dt,
+    .html-embed-wrapper dl.tabular.compact dd,
+    .html-embed-wrapper dl.tabular.compact dt {
+        margin-bottom: 10px;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.compact.extra dd,
+    .html-embed-wrapper .col-sm-1 dl.tabular.compact.extra dt,
+    .html-embed-wrapper .col-sm-2 dl.tabular.compact.extra dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular.compact.extra dt,
+    .html-embed-wrapper .col-sm-3 dl.tabular.compact.extra dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular.compact.extra dt,
+    .html-embed-wrapper .col-sm-4 dl.tabular.compact.extra dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular.compact.extra dt,
+    .html-embed-wrapper .col-sm-5 dl.tabular.compact.extra dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular.compact.extra dt,
+    .html-embed-wrapper .col-sm-6 dl.tabular.compact.extra dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular.compact.extra dt,
+    .html-embed-wrapper dl.tabular.compact.extra dd,
+    .html-embed-wrapper dl.tabular.compact.extra dt {
+        margin-bottom: 0;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-1 dl.tabular.no-bold dt,
+    .html-embed-wrapper .col-sm-2 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular.no-bold dt,
+    .html-embed-wrapper .col-sm-3 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular.no-bold dt,
+    .html-embed-wrapper .col-sm-4 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular.no-bold dt,
+    .html-embed-wrapper .col-sm-5 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular.no-bold dt,
+    .html-embed-wrapper .col-sm-6 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular.no-bold dt,
+    .html-embed-wrapper dl.tabular.no-bold dd,
+    .html-embed-wrapper dl.tabular.no-bold dt {
+        font-weight: 400;
+    }
+    .html-embed-wrapper .col-sm-1 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-1 dl.tabular.no-bold dt,
+    .html-embed-wrapper .col-sm-2 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-2 dl.tabular.no-bold dt,
+    .html-embed-wrapper .col-sm-3 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-3 dl.tabular.no-bold dt,
+    .html-embed-wrapper .col-sm-4 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-4 dl.tabular.no-bold dt,
+    .html-embed-wrapper .col-sm-5 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-5 dl.tabular.no-bold dt,
+    .html-embed-wrapper .col-sm-6 dl.tabular.no-bold dd,
+    .html-embed-wrapper .col-sm-6 dl.tabular.no-bold dt,
+    .html-embed-wrapper dl.tabular.no-bold dd,
+    .html-embed-wrapper dl.tabular.no-bold dt {
+        font-weight: 400;
+    }
+}
+.html-embed-wrapper .memorandum dl.narrow-term {
+    margin-bottom: 10px;
+}
+.html-embed-wrapper .memorandum dl.narrow-term dt {
+    font-weight: 400;
+}
+.html-embed-wrapper .next dl.tabular {
+    margin-bottom: 10px;
+}
+.html-embed-wrapper .next dl.tabular dt {
+    font-size: 2rem;
+    font-weight: 400;
+    width: auto;
+    margin: 0 25px 5px 0;
+    font-family: "GT Walsheim", Arial, sans-serif;
+    border: none;
+    float: left;
+    clear: left;
+}
+.html-embed-wrapper .next dl.tabular dt:first-of-type {
+    margin-top: 5px;
+    font-family: "GT Walsheim", Arial, sans-serif;
+    font-weight: 700;
+}
+.html-embed-wrapper .next dl.tabular dd {
+    font-size: 2rem;
+    font-weight: 400;
+    width: auto;
+    margin: 0 0 5px 0;
+    font-family: "GT Walsheim", Arial, sans-serif;
+    float: left;
+}
+.html-embed-wrapper .next dl.tabular dd:first-of-type {
+    margin-top: 5px;
+    font-family: "GT Walsheim", Arial, sans-serif;
+    font-weight: 700;
+}
+.html-embed-wrapper .next dl.tabular dd small {
+    font-family: "GT Walsheim", Arial, sans-serif;
+    font-weight: 400;
+}
+.html-embed-wrapper ol.subtle-collapsible-list.col-xs-12,
+.html-embed-wrapper ul.subtle-collapsible-list.col-xs-12 {
+    padding: 0 15px 0 0;
+}
