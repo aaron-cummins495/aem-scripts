@@ -72,8 +72,10 @@ def invalidHtml(section):
 def expand_elements(
     input_file,
     url_sheet="batch1",
+    element="2016 Text Block",
     url_header="URL",
-    output_sheet_name="expanded"
+    output_sheet_name="expanded",
+    cf_output_file_name="cf_out.xlsx"
 ):
     wb = load_workbook(input_file)
     url_sheet_obj = wb[url_sheet]
@@ -101,7 +103,14 @@ def expand_elements(
         del wb[output_sheet_name]
     out_sheet = wb.create_sheet(title=output_sheet_name)
 
+    headers_row = ["URL", "Element ID", "Contains DL/DT/Form/Table"]
+    for col, header in enumerate(headers_row, 1):
+        out_sheet.cell(row=1, column=col, value=header)
+
     headers = {"x-user-agent": "AU-AEM-Importer"}
+
+    # --- Parse legacy CSS ---
+    css_parser = cssutils.parseFile("au-styles.css")
 
     # --- Process URLs ---
     row_idx = 2
@@ -114,45 +123,78 @@ def expand_elements(
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, "html.parser")
 
-                # soup find all data-element = 2016 Collapsible Content
-                collapsibles = soup.find_all("section", {"data-element": "2016 Collapsible Content"})
+                for section in soup.find_all("section"):
+                    data_element = section.get("data-element", "").strip().lower()
+                    element_id = section.get("id", "").strip().lower()
 
-                # soup find all data-element = 2016 Text Block
-                text_blocks = soup.find_all("section", {"data-element": "2016 Text Block"})
+                    if data_element == "2016 Collapsible Content".lower():
+                        data_element = element.lower()
+                        # set element id equal to section parent id
+                        element_id = section.parent.get("id", "").strip().lower() + "-collapse"
+                        # set section to section child with collapse class
+                        section = section.css.select_one(".collapse")
 
-                # iterate through all collapsibles and text blocks
-                pageHasInvalidHtml = False
-                for section in collapsibles + text_blocks:
-                    if invalidHtml(section):
-                        pageHasInvalidHtml = True
-                        break
-                
-                if pageHasInvalidHtml:
-                    out_sheet.cell(row=row_idx, column=1, value=url_val)
-                    out_sheet.cell(row=row_idx, column=2, value="✅")
-                    row_idx += 1
-                else:
-                    out_sheet.cell(row=row_idx, column=1, value=url_val)
-                    out_sheet.cell(row=row_idx, column=2, value="❌")
-                    row_idx += 1
+                    comp_clean = element.lower()
+                    if data_element == comp_clean:
+                        if invalidHtml(section):
+                            out_sheet.cell(row=row_idx, column=1, value=url_val)
+                            out_sheet.cell(row=row_idx, column=2, value=element_id)
+                            out_sheet.cell(row=row_idx, column=3, value="✅")
+                            rawHtml = section.prettify()
+                            rawHtml = rawHtml.replace('/index.cfm', '/')
+                            rawHtml = rawHtml.replace('.cfm', '')
 
+                            class_list = []
+                            for child in section.descendants:
+                                if hasattr(child, 'get'):
+                                    class_attr = child.get('class')
+                                    if class_attr:
+                                        for cls in class_attr:
+                                            if cls not in class_list:
+                                                class_list.append(cls)
+                            relevant_css = get_relevant_classes(css_parser, class_list)
+                            rawHtml = f"\n<style>\n{relevant_css}</style>" + rawHtml
 
+                            cfs.append({
+                                "path": convert_url_to_path(url_val),   
+                                "name": element_id,
+                                "title": element_id,
+                                "template": TEMPLATE_PATH,
+                                "html": rawHtml
+                            })
+                            row_idx += 1
+                        else:
+                            out_sheet.cell(row=row_idx, column=1, value=url_val)
+                            out_sheet.cell(row=row_idx, column=2, value=element_id)
+                            out_sheet.cell(row=row_idx, column=3, value="❌")
+                            row_idx += 1
             else:
                 print(f"⚠️ {url_val} → HTTP {response.status_code}")
         except requests.exceptions.RequestException:
             print(f"❌ Failed to fetch {url_val}")
+
+        # --- Write results ---
+        #for i, comp in enumerate(components, start=3):
+        #    out_sheet.cell(row=row_idx, column=i, value=dom_matches.get(comp, 0))
 
         print(f"✅ Processed: {url_val}")
 
     wb.save(input_file)
     print(f"\n✅ Results saved to '{output_sheet_name}' in {input_file}")
 
+    # --- Save CF Output ---
+    cf_out_df = pd.DataFrame(cfs)
+    cf_out_df.to_excel(cf_output_file_name, index=False)
+    print(f"✅ CF Output written to {cf_output_file_name}")
+
 
 if __name__ == "__main__":
     expand_elements(
-        "inputDetect.xlsx",
+        "input.xlsx",
         url_sheet="batch1",
+        element="2016 Text Block",
         url_header="URL",
         output_sheet_name="expanded",
+        cf_output_file_name="cf_out.xlsx",
 
     )
