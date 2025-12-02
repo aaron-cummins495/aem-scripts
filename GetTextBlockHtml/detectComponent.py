@@ -131,10 +131,6 @@ def expand_elements(
                     out_sheet.cell(row=row_idx, column=1, value=url_val)
                     out_sheet.cell(row=row_idx, column=2, value="✅")
                     row_idx += 1
-                else:
-                    out_sheet.cell(row=row_idx, column=1, value=url_val)
-                    out_sheet.cell(row=row_idx, column=2, value="❌")
-                    row_idx += 1
 
 
             else:
@@ -142,7 +138,7 @@ def expand_elements(
         except requests.exceptions.RequestException:
             print(f"❌ Failed to fetch {url_val}")
 
-        print(f"✅ Processed: {url_val}")
+        print(f"✅ Processed: {url_val}\n#{row_idx_place} of {len(urls)}")
 
     wb.save(input_file)
     print(f"\n✅ Results saved to '{output_sheet_name}' in {input_file}")

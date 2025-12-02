@@ -10,6 +10,7 @@ import cssutils
 TEMPLATE_PATH = "/conf/au/settings/dam/cfm/models/htmlEmbed"
 OUTPUT_XLSX = "output.xlsx"
 BASE_CF_PATH = "/content/dam/au/cf/html"
+BASE_ASSET_PATH = "/content/dam/au/assets"
 BASE_PAGE_PATH = "/content/au"
 
 
@@ -143,6 +144,8 @@ def expand_elements(
                             rawHtml = section.prettify()
                             rawHtml = rawHtml.replace('/index.cfm', '/')
                             rawHtml = rawHtml.replace('.cfm', '')
+                            rawHtml = rawHtml.replace('src="/', f'src="{BASE_ASSET_PATH}/')
+                            rawHtml = rawHtml.replace('href="/', f'href="{BASE_PAGE_PATH}/')
 
                             class_list = []
                             for child in section.descendants:
@@ -177,7 +180,7 @@ def expand_elements(
         #for i, comp in enumerate(components, start=3):
         #    out_sheet.cell(row=row_idx, column=i, value=dom_matches.get(comp, 0))
 
-        print(f"✅ Processed: {url_val}")
+        print(f"✅ Processed: {url_val}\n#{row_idx_place}/{len(urls)}")
 
     wb.save(input_file)
     print(f"\n✅ Results saved to '{output_sheet_name}' in {input_file}")
