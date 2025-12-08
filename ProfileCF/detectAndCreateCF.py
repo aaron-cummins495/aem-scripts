@@ -102,6 +102,9 @@ def expand_elements():
 
                 # Determine force display value
                 profileContentSection = profilesElement.css.select_one("section.profile-content")
+                if profileContentSection is None:
+                    print(f"⚠️ {url_val} → No 'section.profile-content' found")
+                    continue
                 dataNewTitle = profileContentSection.get('data-new-title', '').strip().lower()
                 forceDisplay = 'none'
                 if profileDisplay == 'staff':
