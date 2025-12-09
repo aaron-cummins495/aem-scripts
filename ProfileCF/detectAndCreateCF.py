@@ -59,6 +59,9 @@ def expand_elements():
     wb = load_workbook(INPUT_FILE)
     ids_sheet_obj = wb[IDS_SHEET]
 
+    # Output terminal text to log file as well
+    log_file = open("detectAndCreateCF_log.txt", "w")
+
     # --- Find header columns ---
     header_row = 1
     ids_col = find_column(ids_sheet_obj, IDS_HEADER)
@@ -84,17 +87,20 @@ def expand_elements():
 
         if id not in eaglenetIdMap:
             print(f"⚠️ Eaglenet ID {id} not found in report")
+            log_file.write(f"! Eaglenet ID {id} not found in report\n")
             continue
 
         defaultProfilePage = eaglenetIdMap[id]['Default Profile Page']
         if defaultProfilePage is None or not isinstance(defaultProfilePage, str) or defaultProfilePage.strip() == '':
-            print(f"⚠️ Eaglenet ID {id} has no Default Profile Page")
+            print(f"! Eaglenet ID {id} has no Default Profile Page")
+            log_file.write(f"! Eaglenet ID {id} has no Default Profile Page\n")
             continue
 
         url_val = defaultProfilePage.strip()
         url_val = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
 
         print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
+        log_file.write(f"? Processing Eaglenet ID {id} -> {url_val}\n")
 
         try:
             response = requests.get(url_val, headers=headers, timeout=10)
@@ -107,11 +113,13 @@ def expand_elements():
                 # If No elements found, print error, continue to next URL
                 if len(profilesElement) == 0:
                     print(f"⚠️ {url_val} → No '{ELEMENT_SELECTOR}' elements found")
+                    log_file.write(f"! {url_val} -> No '{ELEMENT_SELECTOR}' elements found\n")
                     continue
 
                 # If more than one element found, print error, continue to next URL
                 if len(profilesElement) != 1:
                     print(f"⚠️ {url_val} → Expected 1 '{ELEMENT_SELECTOR}' element, found {len(profilesElement)}")
+                    log_file.write(f"! {url_val} -> Expected 1 '{ELEMENT_SELECTOR}' element, found {len(profilesElement)}\n")
                     continue
 
                 profilesElement = profilesElement[0]
@@ -123,6 +131,7 @@ def expand_elements():
                 profileContentSection = profilesElement.css.select_one("section.profile-content")
                 if profileContentSection is None:
                     print(f"⚠️ {url_val} → No 'section.profile-content' found")
+                    log_file.write(f"! {url_val} -> No 'section.profile-content' found\n")
                     continue
                 forceDisplay = eaglenetIdMap[id]['Force Profile']
 
@@ -244,16 +253,22 @@ def expand_elements():
 
             else:
                 print(f"⚠️ {url_val} → HTTP {response.status_code}")
+                log_file.write(f"! {url_val} -> HTTP {response.status_code}\n")
         except requests.exceptions.RequestException:
             print(f"❌ Failed to fetch {url_val}")
+            log_file.write(f"X Failed to fetch {url_val}\n")
 
         print(f"✅ Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}")
+        log_file.write(f"O Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}\n")
         print("----------------------------------")
+        log_file.write("----------------------------------\n")
 
     # --- Save CF Output ---
     cf_out_df = pd.DataFrame(cfs)
     cf_out_df.to_excel(CF_OUTPUT_FILE_NAME, index=False)
     print(f"✅ CF Output written to {CF_OUTPUT_FILE_NAME}")
+    log_file.write(f"O CF Output written to {CF_OUTPUT_FILE_NAME}\n")
+    log_file.close()
 
 
 if __name__ == "__main__":
