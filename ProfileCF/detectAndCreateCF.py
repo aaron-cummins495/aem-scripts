@@ -13,9 +13,9 @@ BASE_CF_PATH = "/content/dam/au/cf/profiles-migrated"
 BASE_ASSET_PATH = "/content/dam/au/assets"
 BASE_PAGE_PATH = "/content/au"
 INPUT_FILE = "input.xlsx"
-URL_SHEET = "batch1"
+IDS_SHEET = "batch1"
 ELEMENT_SELECTOR = "div.CS_Element_Custom > div.profile-full"
-URL_HEADER = "URL"
+IDS_HEADER = "Eaglenet ID"
 CF_OUTPUT_FILE_NAME = "cf_out.xlsx"
 
 
@@ -48,34 +48,53 @@ def get_profile_display(url):
     _, display = os.path.split(dir_path)
     return display
 
+def find_column(sheet, header_name):
+    for col in range(1, sheet.max_column + 1):
+        val = sheet.cell(row=1, column=col).value
+        if val and str(val).strip() == header_name:
+            return col
+    raise ValueError(f"Column '{header_name}' not found in sheet '{sheet.title}'")
+
 def expand_elements():
     wb = load_workbook(INPUT_FILE)
-    url_sheet_obj = wb[URL_SHEET]
+    ids_sheet_obj = wb[IDS_SHEET]
 
     # --- Find header columns ---
     header_row = 1
-    def find_column(sheet, header_name):
-        for col in range(1, sheet.max_column + 1):
-            val = sheet.cell(row=header_row, column=col).value
-            if val and str(val).strip() == header_name:
-                return col
-        raise ValueError(f"Column '{header_name}' not found in sheet '{sheet.title}'")
+    ids_col = find_column(ids_sheet_obj, IDS_HEADER)
 
-    url_col = find_column(url_sheet_obj, URL_HEADER)
-
-    # --- Read URLs ---
-    urls = {}
-    for row in range(header_row + 1, url_sheet_obj.max_row + 1):
-        url_val = url_sheet_obj.cell(row=row, column=url_col).value
-        if url_val:
-            urls[str(url_val).strip()] = {"URL": str(url_val).strip()}
+    # --- Read usernames from input ---
+    idsToProcess = []
+    for row in range(header_row + 1, ids_sheet_obj.max_row + 1):
+        id_val = ids_sheet_obj.cell(row=row, column=ids_col).value
+        if id_val:
+            idsToProcess.append(str(id_val).strip())
 
     headers = {"x-user-agent": "AU-AEM-Importer"}
 
+    # -- load profile report and create map of eaglenet ids ---
+    reportWb = pd.read_excel("2025_profilerotreport.xlsx", sheet_name="2025_profilerotreport")
+    eaglenetIdMap = {}
+    for index, row in reportWb.iterrows():
+        eaglenetIdMap[row['Eaglenet ID']] = row
+    
     # --- Process URLs ---
     cfs = []
-    for row_idx_place, url in enumerate(urls.values(), start=2):
-        url_val = url["URL"]
+    for row_idx_place, id in enumerate(idsToProcess):
+
+        if id not in eaglenetIdMap:
+            print(f"⚠️ Eaglenet ID {id} not found in report")
+            continue
+
+        defaultProfilePage = eaglenetIdMap[id]['Default Profile Page']
+        if defaultProfilePage is None or not isinstance(defaultProfilePage, str) or defaultProfilePage.strip() == '':
+            print(f"⚠️ Eaglenet ID {id} has no Default Profile Page")
+            continue
+
+        url_val = defaultProfilePage.strip()
+        url_val = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
+
+        print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
 
         try:
             response = requests.get(url_val, headers=headers, timeout=10)
@@ -105,12 +124,7 @@ def expand_elements():
                 if profileContentSection is None:
                     print(f"⚠️ {url_val} → No 'section.profile-content' found")
                     continue
-                dataNewTitle = profileContentSection.get('data-new-title', '').strip().lower()
-                forceDisplay = 'none'
-                if profileDisplay == 'staff':
-                    forceDisplay = 'faculty' if 'faculty' in dataNewTitle else 'none'
-                elif profileDisplay == 'faculty':
-                    forceDisplay = 'staff' if 'faculty' not in dataNewTitle else 'none'
+                forceDisplay = eaglenetIdMap[id]['Force Profile']
 
                 # Get Bio html
                 bioElement = profilesElement.css.select_one("dd.bio-text")
@@ -172,15 +186,45 @@ def expand_elements():
                         altPhoneTypeElement = contactInfoElement.css.select_one("dd.profile-phone")
                         altPhoneType = altPhoneTypeElement.text.strip() if altPhoneTypeElement else ''
                 
+                # Get See also links
+                contactLinksHtml = ''
+                seeAlsoLinks = profilesElement.css.select("div.profile-see-also > dl > dd")
+                for link in seeAlsoLinks:
+                    # if previous sibling dt text is 'For the Media', skip this link
+                    prev_dt = link.find_previous_sibling('dt')
+                    if prev_dt and prev_dt.text.strip().lower() == 'for the media':
+                        continue
+                    contactLinksHtml += link.decode_contents() + '<br>'
 
+                savePath = BASE_CF_PATH + '/' + id
+                if (len(id.strip()) >= 2):
+                    # CFs save path is BASE_CF_PATH + first two chars of id + full id
+                    savePath = BASE_CF_PATH + '/' + id[:2] + '/' + id
 
-                # Get profile name from element data attribute itemprop=name
-                nameElement = profilesElement.css.select_one("[itemprop='name']")
-                profileName = nameElement.text.strip() if nameElement else 'name not found'
+                # Add resume if present
+                resume = eaglenetIdMap[id]['Resume']
+                if resume and isinstance(resume, str) and resume.strip() != '':
+                    resume = resume.strip()
+                    resume = BASE_ASSET_PATH + '/migrated-profile-resumes/' + resume.lstrip('/')
 
+                # Overwrite resume with CV if present
+                cv = eaglenetIdMap[id]['CV']
+                if cv and isinstance(cv, str) and cv.strip() != '':
+                    cv = cv.strip()
+                    cv = BASE_ASSET_PATH + '/migrated-profile-resumes/' + cv.lstrip('/')
+                    resume = cv  # overwrite resume with CV
+
+                # Add profile image if present and not default
+                profileImage = eaglenetIdMap[id]['Profile Image']
+                if profileImage and isinstance(profileImage, str) and profileImage.strip() != '':
+                    profileImage = profileImage.strip()
+                    if not profileImage.lower().endswith('/uploads/defaults/original/au_profile.jpg'):
+                        profileImage = BASE_ASSET_PATH + '/migrated-profile-images/' + profileImage.lstrip('/')
+                    else:
+                        profileImage = '/content/dam/au/assets/global/images/au_profile.jpg'  # default image
 
                 cfs.append({
-                    "path": convert_url_to_path(url_val),   
+                    "path": savePath,   
                     "name": "profileCF",
                     "title": "profileCF",
                     "template": TEMPLATE_PATH,
@@ -193,6 +237,9 @@ def expand_elements():
                     "officeHours": officeHoursHtml,
                     "altPhone": altPhoneNumber,
                     "altPhoneType": altPhoneType,
+                    "contactLinks": contactLinksHtml,
+                    "resume": resume,
+                    "photo": profileImage,
                 })
 
             else:
@@ -200,7 +247,8 @@ def expand_elements():
         except requests.exceptions.RequestException:
             print(f"❌ Failed to fetch {url_val}")
 
-        print(f"✅ Processed: {url_val}\n#{row_idx_place}/{len(urls)}")
+        print(f"✅ Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}")
+        print("----------------------------------")
 
     # --- Save CF Output ---
     cf_out_df = pd.DataFrame(cfs)
