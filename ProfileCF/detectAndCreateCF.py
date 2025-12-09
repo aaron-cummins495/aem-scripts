@@ -61,6 +61,7 @@ def expand_elements():
 
     # Output terminal text to log file as well
     log_file = open("detectAndCreateCF_log.txt", "w")
+    failed_log_file = open("detectAndCreateCF_failed_log.txt", "w")
 
     # --- Find header columns ---
     header_row = 1
@@ -257,6 +258,11 @@ def expand_elements():
         except requests.exceptions.RequestException:
             print(f"❌ Failed to fetch {url_val}")
             log_file.write(f"X Failed to fetch {url_val}\n")
+            print("----------------------------------")
+            log_file.write("----------------------------------\n")
+            failed_log_file.write(f"{url_val}\n")
+            continue
+
 
         print(f"✅ Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}")
         log_file.write(f"O Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}\n")
@@ -269,6 +275,7 @@ def expand_elements():
     print(f"✅ CF Output written to {CF_OUTPUT_FILE_NAME}")
     log_file.write(f"O CF Output written to {CF_OUTPUT_FILE_NAME}\n")
     log_file.close()
+    failed_log_file.close()
 
 
 if __name__ == "__main__":
