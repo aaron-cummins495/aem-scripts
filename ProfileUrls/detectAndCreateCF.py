@@ -90,20 +90,26 @@ def expand_elements():
             log_file.write(f"! Eaglenet ID {id} not found in report\n")
             continue
 
-        defaultProfilePage = eaglenetIdMap[id]['Default Profile Page']
-        if defaultProfilePage is None or not isinstance(defaultProfilePage, str) or defaultProfilePage.strip() == '':
+        allProfilePages = eaglenetIdMap[id]['All Profile Pages']
+        if allProfilePages is None or not isinstance(allProfilePages, str) or allProfilePages.strip() == '':
             print(f"! Eaglenet ID {id} has no Default Profile Page")
             log_file.write(f"! Eaglenet ID {id} has no Default Profile Page\n")
             continue
 
-        url_val = defaultProfilePage.strip()
-        url_val = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
-
-        print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
-        log_file.write(f"? Processing Eaglenet ID {id} -> {url_val}\n")
-        cfs.append({
-            "url": url_val,
-        })
+        urls_val = allProfilePages.strip().lower()
+        urls_val = urls_val.replace('faculty:', '')
+        urls_val = urls_val.replace('staff:', '')
+        urls_val = urls_val.replace('student:', '')
+        for url_val in urls_val.split('|'):
+            url_val = url_val.strip()
+            if url_val == '':
+                continue
+            url_val = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
+            print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
+            log_file.write(f"? Processing Eaglenet ID {id} -> {url_val}\n")
+            cfs.append({
+                "url": url_val,
+            })
 
         print(f"✅ Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}")
         log_file.write(f"O Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}\n")
