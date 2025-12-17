@@ -87,34 +87,47 @@ def expand_elements():
 
         if id not in eaglenetIdMap:
             print(f"⚠️ Eaglenet ID {id} not found in report")
-            log_file.write(f"! Eaglenet ID {id} not found in report\n")
+            log_file.write(f"Not found in ROT report:                {id}\n")
             continue
 
-        allProfilePages = eaglenetIdMap[id]['All Profile Pages']
-        if allProfilePages is None or not isinstance(allProfilePages, str) or allProfilePages.strip() == '':
-            print(f"! Eaglenet ID {id} has no Default Profile Page")
-            log_file.write(f"! Eaglenet ID {id} has no Default Profile Page\n")
-            continue
-
-        urls_val = allProfilePages.strip().lower()
-        urls_val = urls_val.replace('faculty:', '')
-        urls_val = urls_val.replace('staff:', '')
-        urls_val = urls_val.replace('student:', '')
-        for url_val in urls_val.split('|'):
-            url_val = url_val.strip()
-            if url_val == '':
-                continue
+        defaultProfilePage = eaglenetIdMap[id]['Default Profile Page']
+        if defaultProfilePage is not None and isinstance(defaultProfilePage, str) and defaultProfilePage.strip() != '':
+            url_val = defaultProfilePage.strip().lower()
             url_val = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
             print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
-            log_file.write(f"? Processing Eaglenet ID {id} -> {url_val}\n")
             cfs.append({
                 "url": url_val,
             })
+        else:
+            print(f"! Eaglenet ID {id} has no Default Profile Page")
+            #log_file.write(f"! Eaglenet ID {id} has no Default Profile Page\n")
+
+            allProfilePages = eaglenetIdMap[id]['All Profile Pages']
+            if allProfilePages is None or not isinstance(allProfilePages, str) or allProfilePages.strip() == '':
+                print(f"! Eaglenet ID {id} has no Additional Profile Page")
+                continue
+
+            urls_val = allProfilePages.strip().lower()
+            urls_val = urls_val.replace('faculty:', '')
+            urls_val = urls_val.replace('staff:', '')
+            urls_val = urls_val.replace('student:', '')
+            hasProfile = False
+            for url_val in urls_val.split('|'):
+                url_val = url_val.strip()
+                if url_val == '':
+                    continue
+                hasProfile = True
+                url_val = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
+                print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
+                cfs.append({
+                    "url": url_val,
+                })  
+            if not hasProfile:
+                print(f"! Eaglenet ID {id} has no valid Additional Profile Pages")
+                log_file.write(f"Profile page missing in ROT report:     {id}\n")
 
         print(f"✅ Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}")
-        log_file.write(f"O Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}\n")
         print("----------------------------------")
-        log_file.write("----------------------------------\n")
 
     # --- Save CF Output ---
     cf_out_df = pd.DataFrame(cfs)

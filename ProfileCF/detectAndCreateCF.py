@@ -91,13 +91,30 @@ def expand_elements():
             log_file.write(f"! Eaglenet ID {id} not found in report\n")
             continue
 
+        url_val = ''
         defaultProfilePage = eaglenetIdMap[id]['Default Profile Page']
         if defaultProfilePage is None or not isinstance(defaultProfilePage, str) or defaultProfilePage.strip() == '':
-            print(f"! Eaglenet ID {id} has no Default Profile Page")
-            log_file.write(f"! Eaglenet ID {id} has no Default Profile Page\n")
+
+            allProfilePages = eaglenetIdMap[id]['All Profile Pages']
+            if allProfilePages is not None and isinstance(allProfilePages, str) and allProfilePages.strip() != '':
+                additional_urls_val = allProfilePages.strip().lower()
+                additional_urls_val = additional_urls_val.replace('faculty:', '')
+                additional_urls_val = additional_urls_val.replace('staff:', '')
+                additional_urls_val = additional_urls_val.replace('student:', '')
+                for additional_url_val in additional_urls_val.split('|'):
+                    if additional_url_val != '':
+                        url_val = additional_url_val
+                        break
+        else:
+            url_val = defaultProfilePage.strip().lower()
+            
+
+        if url_val == '':
+            print(f"❌ No URL found for Eaglenet ID {id}")
+            log_file.write(f"X No URL found for Eaglenet ID {id}\n")
+            failed_log_file.write(f"{id}\n")
             continue
 
-        url_val = defaultProfilePage.strip()
         url_val = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
 
         print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
@@ -206,11 +223,6 @@ def expand_elements():
                         continue
                     contactLinksHtml += link.decode_contents() + '<br>'
 
-                savePath = BASE_CF_PATH + '/' + id
-                if (len(id.strip()) >= 2):
-                    # CFs save path is BASE_CF_PATH + first two chars of id + full id
-                    savePath = BASE_CF_PATH + '/' + id[:2] + '/' + id
-
                 # Add resume if present
                 resume = eaglenetIdMap[id]['Resume']
                 if resume and isinstance(resume, str) and resume.strip() != '':
@@ -233,6 +245,19 @@ def expand_elements():
                     else:
                         profileImage = '/content/dam/au/assets/global/images/au_profile.jpg'  # default image
 
+                # Add authorized admins if present
+                authorizedAdmins = eaglenetIdMap[id]['Authorized Admins']
+                authorizedAdminsString = '['
+                if authorizedAdmins and isinstance(authorizedAdmins, str) and authorizedAdmins.strip() != '':
+                    for admin in authorizedAdmins.split(','):
+                        authorizedAdminsString += f'"{admin.strip()}", '
+                authorizedAdminsString += ']'
+
+                savePath = BASE_CF_PATH + '/' + id
+                if (len(id.strip()) >= 2):
+                    # CFs save path is BASE_CF_PATH + first two chars of id + full id
+                    savePath = BASE_CF_PATH + '/' + id[:2] + '/' + id
+
                 cfs.append({
                     "path": savePath,   
                     "name": "profileCF",
@@ -250,6 +275,8 @@ def expand_elements():
                     "contactLinks": contactLinksHtml,
                     "resume": resume,
                     "photo": profileImage,
+                    "defaultProfilePage": url_val,
+                    "authorizedAdmins": authorizedAdminsString,
                 })
 
             else:
