@@ -86,6 +86,10 @@ def expand_elements():
     cfs = []
     for row_idx_place, id in enumerate(idsToProcess):
 
+        #stop after 10 for testing
+        if row_idx_place > 10:
+            break
+
         if id not in eaglenetIdMap:
             print(f"⚠️ Eaglenet ID {id} not found in report")
             log_file.write(f"! Eaglenet ID {id} not found in report\n")
@@ -250,8 +254,12 @@ def expand_elements():
                 authorizedAdminsString = '['
                 if authorizedAdmins and isinstance(authorizedAdmins, str) and authorizedAdmins.strip() != '':
                     for admin in authorizedAdmins.split(','):
-                        authorizedAdminsString += f'"{admin.strip()}", '
-                authorizedAdminsString += ']'
+                        authorizedAdminsString += f'"({admin.strip()})", '
+                # remove trailing comma and space, add closing bracket
+                if len(authorizedAdminsString) > 1:
+                    authorizedAdminsString = authorizedAdminsString[:-2] + ']'
+                else:
+                    authorizedAdminsString = '[]'
 
                 savePath = BASE_CF_PATH + '/' + id
                 if (len(id.strip()) >= 2):
