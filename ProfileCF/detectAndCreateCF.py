@@ -251,15 +251,15 @@ def expand_elements():
 
                 # Add authorized admins if present
                 authorizedAdmins = eaglenetIdMap[id]['Authorized Admins']
-                authorizedAdminsString = '['
+                authorizedAdminsString = ''
                 if authorizedAdmins and isinstance(authorizedAdmins, str) and authorizedAdmins.strip() != '':
                     for admin in authorizedAdmins.split(','):
-                        authorizedAdminsString += f'"({admin.strip()})", '
-                # remove trailing comma and space, add closing bracket
+                        authorizedAdminsString += '{"authorizedAdminCMF":"(test@test.com)"}|'
+                # remove trailing |, add closing bracket
                 if len(authorizedAdminsString) > 1:
-                    authorizedAdminsString = authorizedAdminsString[:-2] + ']'
+                    authorizedAdminsString = authorizedAdminsString[:-1]
                 else:
-                    authorizedAdminsString = '[]'
+                    authorizedAdminsString = ''
 
                 savePath = BASE_CF_PATH + '/' + id
                 if (len(id.strip()) >= 2):
@@ -284,7 +284,7 @@ def expand_elements():
                     "resume": resume,
                     "photo": profileImage,
                     "defaultProfilePage": url_val,
-                    "authorizedAdmins": authorizedAdminsString,
+                    "authorizedAdminsMigrated": authorizedAdminsString,
                 })
 
             else:
