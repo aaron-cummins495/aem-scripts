@@ -122,7 +122,15 @@ def expand_elements():
                     
                     # Get article issue
                     issueElement = headerElement.css.select_one("time.issue")
-                    publicationDate = issueElement.text.strip() if issueElement else ''
+                    publicationDate = issueElement['datetime'] if issueElement and issueElement.has_attr('datetime') else ''
+                    # Convert issue date to YYYY-MM-DD format if possible
+                    # (Assuming issue date is in format like "YYYY-MM-DD HH:MM:SS"")
+                    try:
+                        from datetime import datetime
+                        date_obj = datetime.strptime(publicationDate, "%Y-%m-%d %H:%M:%S")
+                        publicationDate = date_obj.strftime("%Y-%m-%d")
+                    except ValueError:
+                        pass
 
                     # Get article title
                     titleElement = headerElement.css.select_one("h1")
@@ -131,6 +139,10 @@ def expand_elements():
                     # Get teaser blurb from header
                     teaserElement = headerElement.css.select_one("p.teaser")
                     teaserText = teaserElement.text.strip() if teaserElement else ''
+
+                # Get teaser blurb from meta og:description
+                teaserHeadElement = soup.select_one('meta[property="og:description"]')
+                teaserHeadText = teaserHeadElement['content'] if teaserHeadElement else ''
 
                 # Get article author
                 authorText = ''
@@ -181,7 +193,7 @@ def expand_elements():
                     "topic": topicText,
                     "topicLink": topicLink,
                     "news_title": titleText,
-                    "teaser": teaserText,
+                    "teaser": teaserText if teaserText else teaserHeadText,
                     "showTeaser": "true" if teaserText else "false",
                     "author": authorText,
                     "illustrationBy": illustrationCreditText,
