@@ -128,9 +128,9 @@ def expand_elements():
                     titleElement = headerElement.css.select_one("h1")
                     titleText = titleElement.text.strip() if titleElement else ''
 
-                # Get teaser blurb from meta og:description
-                teaserElement = soup.select_one('meta[property="og:description"]')
-                teaserText = teaserElement['content'] if teaserElement else ''
+                    # Get teaser blurb from header
+                    teaserElement = headerElement.css.select_one("p.teaser")
+                    teaserText = teaserElement.text.strip() if teaserElement else ''
 
                 # Get article author
                 authorText = ''
@@ -180,9 +180,9 @@ def expand_elements():
                     "template": TEMPLATE_PATH,
                     "topic": topicText,
                     "topicLink": topicLink,
-                    "newsTitle": titleText,
+                    "news_title": titleText,
                     "teaser": teaserText,
-                    "showTeaser": "true",
+                    "showTeaser": "true" if teaserText else "false",
                     "author": authorText,
                     "illustrationBy": illustrationCreditText,
                     "photographyBy": photoCreditText,
