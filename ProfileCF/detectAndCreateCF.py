@@ -93,8 +93,8 @@ def expand_elements():
     for row_idx_place, id in enumerate(idsToProcess):
 
         #stop after 10 for testing
-        if row_idx_place > 10:
-            break
+       # if row_idx_place > 10:
+        #    break
 
         if id not in eaglenetIdMap:
             print(f"⚠️ Eaglenet ID {id} not found in report")
@@ -266,7 +266,7 @@ def expand_elements():
                 authorizedAdminsString = ''
                 if authorizedAdmins and isinstance(authorizedAdmins, str) and authorizedAdmins.strip() != '':
                     for admin in authorizedAdmins.split(','):
-                        authorizedAdminsString += '{"authorizedAdminCMF":"(test@test.com)"}|'
+                        authorizedAdminsString += '{"authorizedAdminCMF":"(' + admin.strip() + '@american.edu)"}|'
                 # remove trailing |, add closing bracket
                 if len(authorizedAdminsString) > 1:
                     authorizedAdminsString = authorizedAdminsString[:-1]
