@@ -80,6 +80,12 @@ def expand_elements():
     eaglenetIdMap = {}
     for index, row in reportWb.iterrows():
         eaglenetIdMap[row['Eaglenet ID']] = row
+
+    # -- load sadea list and create map of eaglenet ids ---
+    sadeaWb = pd.read_excel("sadeaList.xlsx", sheet_name="Sheet1")
+    sadeaMap = {}
+    for index, row in sadeaWb.iterrows():
+        sadeaMap[row['eaglenet_id']] = row
     
     # --- Process URLs ---
     cfs = []
@@ -91,9 +97,16 @@ def expand_elements():
             continue
 
         defaultProfilePage = eaglenetIdMap[id]['Default Profile Page']
+        sadeaProfilePage = sadeaMap[id]['full url'] if id in sadeaMap else None
         if defaultProfilePage is not None and isinstance(defaultProfilePage, str) and defaultProfilePage.strip() != '':
             url_val = defaultProfilePage.strip().lower()
             url_val = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
+            print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
+            cfs.append({
+                "url": url_val,
+            })
+        elif sadeaProfilePage is not None and isinstance(sadeaProfilePage, str) and sadeaProfilePage.strip() != '':
+            url_val = sadeaProfilePage.strip()
             print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
             cfs.append({
                 "url": url_val,

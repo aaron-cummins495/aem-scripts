@@ -81,6 +81,12 @@ def expand_elements():
     eaglenetIdMap = {}
     for index, row in reportWb.iterrows():
         eaglenetIdMap[row['Eaglenet ID']] = row
+
+    # -- load sadea list and create map of eaglenet ids ---
+    sadeaWb = pd.read_excel("sadeaList.xlsx", sheet_name="Sheet1")
+    sadeaMap = {}
+    for index, row in sadeaWb.iterrows():
+        sadeaMap[row['Eaglenet ID']] = row
     
     # --- Process URLs ---
     cfs = []
@@ -112,6 +118,12 @@ def expand_elements():
         else:
             url_val = defaultProfilePage.strip().lower()
             
+
+        if url_val == '':
+            if id in sadeaMap:
+                sadeaProfilePage = sadeaMap[id]['full url']
+                if sadeaProfilePage is not None and isinstance(sadeaProfilePage, str) and sadeaProfilePage.strip() != '':
+                    url_val = sadeaProfilePage.strip()
 
         if url_val == '':
             print(f"❌ No URL found for Eaglenet ID {id}")
@@ -283,7 +295,7 @@ def expand_elements():
                     "contactLinks": contactLinksHtml,
                     "resume": resume,
                     "photo": profileImage,
-                    "defaultProfilePage": url_val,
+                    "defaultProfilePage": url_val.replace('https://www.american.edu', '').replace('.cfm', ''),
                     "authorizedAdminsMigrated": authorizedAdminsString,
                 })
 
