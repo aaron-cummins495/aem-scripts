@@ -134,6 +134,9 @@ def expand_elements(
                         element_id = section.parent.get("id", "").strip().lower() + "-collapse"
                         # set section to section child with collapse class
                         section = section.css.select_one(".collapse")
+                        # remove collapse class from section
+                        if section and "collapse" in section.get("class", []):
+                            section["class"] = [cls for cls in section.get("class", []) if cls != "collapse"]
 
                     comp_clean = element.lower()
                     if data_element == comp_clean:
