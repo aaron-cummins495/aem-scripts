@@ -1,0 +1,144 @@
+! https://www.american.edu/profiles/staff/myohannes.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/mzaki.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/npietrucha.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/nyireland.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/oflores.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/pnelson.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/rickerso.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/rplater.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/rsantos.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/sandoval.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/scdrew.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/shylynp.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/squreshi.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/sturner.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/tbui.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/wwood.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/ybell.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/zvincent.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/es4138a.cfm -> No 'section.profile-content' found
+! https://www.american.edu/sis/faculty/sarpaci.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/jpichardo.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/palmerow.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/sabsher.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/sakurai.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/winfreye.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/atewfik.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/bdorsey.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/brandy.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/bruce.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/cameronh.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/carterca.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/cbanks.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/celison.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/ckao.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/cponce.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/cwilliams.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/danielje.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/dawilson.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/dchavez.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/emoss.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/esimms.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/evitts.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/fm3361a.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/ggeiger.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/greese.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/hkirkland.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/hplowellpage.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/jabrea.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/jatchulo.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/jbruggeman.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/jennifers.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/jgrimes.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/jmcdaniel.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/jparmley.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/jrany.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/kaleabg.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/kaybanks.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/kebbales.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/keim.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/kfogleman.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/kspratt.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/kvalle.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/lamanh.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/laprade.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/markf.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/mbarthel.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/mcimafranca.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/mdreibelbis.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/mgillberg.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/mhaas.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/mjones.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/mlh.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/mvela.cfm -> HTTP 404
+! https://www.american.edu/spa/faculty/edelson.cfm -> HTTP 404
+! https://www.american.edu/spa/faculty/petras.cfm -> HTTP 404
+! https://www.american.edu/spa/faculty/relihan.cfm -> HTTP 404
+! https://www.american.edu/spa/faculty/wells.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/aadelekan.cfm -> HTTP 404
+! https://www.american.edu/wcl/faculty/ad9351a.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/akcusano.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/akim.cfm -> HTTP 404
+! https://www.american.edu/soc/faculty/aljanney.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/aportes.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/bradly.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/brezzell.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/buster.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/buster.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/cenk.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/cenk.cfm -> No 'section.profile-content' found
+! https://www.american.edu/soe/faculty/cholcomb.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/clazo.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/clazo.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/costanzi.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/costanzi.cfm -> No 'section.profile-content' found
+! https://www.american.edu/cas/faculty/bb6640a.cfm -> HTTP 404
+! https://www.american.edu/cas/faculty/jbangerayoung.cfm -> HTTP 404
+! https://www.american.edu/cas/faculty/lydiab.cfm -> HTTP 404
+! https://www.american.edu/cas/faculty/qvo.cfm -> HTTP 404
+! https://www.american.edu/kogod/faculty/kbaker.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/acarr.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/aelkadi.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/aengelsman.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/afuller.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/anguiano.cfm -> HTTP 404
+! https://www.american.edu/profiles/staff/arodcruz.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/ftopcuog.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/ftopcuog.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/gavilan.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/gavilan.cfm -> No 'section.profile-content' found
+! https://www.american.edu/soe/faculty/gibbons.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/jchill.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/jchill.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/jdickens.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/jdickens.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/staff/jessyama.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/jl9898b.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/jmarvel.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/jmarvel.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/staff/jnagler.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/jtether.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/jtether.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/lawal.cfm -> HTTP 404
+! https://www.american.edu/soe/faculty/lent.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/lgraham.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/lgraham.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/maidman.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/maidman.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/matanin.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/matanin.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/mckinnon.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/mckinnon.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/nalsir.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/nalsir.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/sali.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/sali.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/schrader.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/schrader.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/suddin.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/suddin.cfm -> No 'section.profile-content' found
+! https://www.american.edu/profiles/students/taub.cfm -> HTTP 404
+! https://www.american.edu/profiles/students/taub.cfm -> HTTP 404
+! https://www.american.edu/cas/faculty/jgray.cfm -> HTTP 404
+! https://www.american.edu/cas/faculty/msklarew.cfm -> HTTP 404
+
