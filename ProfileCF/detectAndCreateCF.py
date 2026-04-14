@@ -243,6 +243,62 @@ def expand_elements():
                 # Get contact info element
                 contactInfoElement = profilesElement.css.select_one("dl.profile-contact-info")
 
+                # Get profile name element
+                profileNameElement = profilesElement.css.select_one('h1.profile-name')
+
+                # Get name from contact info
+                first_name = ''
+                if profileNameElement:
+                    nameElement = profileNameElement.css.select_one('span[itemprop=name]')
+                    first_name = nameElement.text if nameElement else ''
+
+                is_staff = True
+                # Get For the Media block
+                forTheMediaElements = profilesElement.css.select("div.profile-see-also dt")
+                for element in forTheMediaElements:
+                    if element.text.strip().lower() == 'for the media':
+                        is_staff = False
+                        break
+                # TODO: Temporary for profiles not in Worday
+                forceDisplay = 'Staff' if is_staff else 'Faculty'
+                
+                # Get faculty title from contact info
+                faculty_title = ''
+                staff_title = ''
+                if profileNameElement:
+                    facultyTitleElement = profileNameElement.css.select_one('small[itemprop=jobTitle]')
+                    faculty_title = facultyTitleElement.text if facultyTitleElement and not is_staff else ''
+                    staff_title = facultyTitleElement.text if facultyTitleElement and is_staff else ''
+
+                # Get faculty dept name from contact info
+                faculty_dept_name = ''
+                staff_dept_name = ''
+                if profileNameElement:
+                    facultyDeptNameElement = profileNameElement.css.select_one('small[itemprop="worksFor affiliation memberOf"]')
+                    faculty_dept_name = facultyDeptNameElement.text if facultyDeptNameElement and not is_staff else ''
+                    staff_dept_name = facultyDeptNameElement.text if facultyDeptNameElement and is_staff else ''
+                    facultyDeptNameElement = profileNameElement.css.select_one('small[itemprop="affiliation memberOf"]')
+                    faculty_dept_name = facultyDeptNameElement.text if facultyDeptNameElement and not is_staff else ''
+                    staff_dept_name = facultyDeptNameElement.text if facultyDeptNameElement and is_staff else ''
+
+                # Get fso line 1
+                fso1 = ''
+                if contactInfoElement:
+                    fsoLine1Element = contactInfoElement.css.select_one('dd.office1')
+                    fso1 = fsoLine1Element.text if fsoLine1Element else ''
+
+                # Get fso line 2
+                fso2 = ''
+                if contactInfoElement:
+                    fso2Element = contactInfoElement.css.select_one('dd.office2')
+                    fso2 = fso2Element.text if fso2Element else ''
+
+                # Get fso line 3
+                fso3 = ''
+                if contactInfoElement:
+                    fso3Element = contactInfoElement.css.select_one('dd.office3')
+                    fso3 = fso3Element.text if fso3Element else ''
+
                 # Get office hours html from last dd in contact info
                 officeHoursHtml = ''
                 if contactInfoElement:
@@ -301,7 +357,9 @@ def expand_elements():
                     areasOfSpecializationMigrated = areasOfSpecializationMigrated[:-1]
 
                 # Add resume if present
-                resume = eaglenetIdMap[id]['Resume'] if inIdMap else ''
+                resume = BASE_ASSET_PATH + '/migrated-profile-resumes/' + profilesElement.css.select_one('div.profile-image-cv a')['href'].lstrip('/') if profilesElement.css.select_one('div.profile-image-cv a') else ''
+
+                resume = eaglenetIdMap[id]['Resume'] if inIdMap else resume
                 if resume and isinstance(resume, str) and resume.strip() != '':
                     resume = resume.strip()
                     resume = BASE_ASSET_PATH + '/migrated-profile-resumes/' + resume.lstrip('/')
@@ -314,13 +372,18 @@ def expand_elements():
                     resume = cv  # overwrite resume with CV
 
                 # Add profile image if present and not default
-                profileImage = eaglenetIdMap[id]['Profile Image'] if inIdMap else ''
+                profileImage = BASE_ASSET_PATH + '/migrated-profile-images/' + profilesElement.css.select_one('div.profile-image-cv img')['src'].lstrip('/') if profilesElement.css.select_one('div.profile-image-cv img') else ''
+
+                profileImage = eaglenetIdMap[id]['Profile Image'] if inIdMap else profileImage
                 if profileImage and isinstance(profileImage, str) and profileImage.strip() != '':
                     profileImage = profileImage.strip()
                     if not profileImage.lower().endswith('/uploads/defaults/original/au_profile.jpg'):
                         profileImage = BASE_ASSET_PATH + '/migrated-profile-images/' + profileImage.lstrip('/')
                     else:
                         profileImage = '/content/dam/au/assets/global/images/au_profile.jpg'  # default image
+                
+                if profileImage.lower().endswith('/uploads/defaults/original/au_profile.jpg'):
+                    profileImage = '/content/dam/au/assets/global/images/au_profile.jpg'  # default image
 
                 # Add authorized admins if present
                 authorizedAdmins = eaglenetIdMap[id]['Authorized Admins'] if inIdMap else ''
@@ -361,7 +424,16 @@ def expand_elements():
                     "username": id,
                     "hideEmail": hideEmail,
                     "hidePhone": hidePhone,
-                    "areasOfSpecializationMigrated": areasOfSpecializationMigrated
+                    "areasOfSpecializationMigrated": areasOfSpecializationMigrated,
+                    "first_name": first_name,
+                    "faculty_dept_name": faculty_dept_name,
+                    "staff_dept_name": staff_dept_name,
+                    "faculty_title": faculty_title,
+                    "staff_title": staff_title,
+                    "fso_line1": fso1,
+                    "fso_line2": fso2,
+                    "fso_phone": fso3,
+
                 })
 
                 print(f"✅ Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}")

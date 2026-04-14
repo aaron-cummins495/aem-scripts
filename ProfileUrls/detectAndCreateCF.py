@@ -89,28 +89,31 @@ def expand_elements():
     
     # --- Process URLs ---
     cfs = []
+    failedIds = []
     for row_idx_place, id in enumerate(idsToProcess):
 
         if id not in eaglenetIdMap:
             print(f"⚠️ Eaglenet ID {id} not found in report")
             log_file.write(f"Not found in ROT report:                {id}\n")
+            failedIds.append({
+                "id": id,
+                "reason": "Not found in ROT report"
+            })
             continue
-
+        
+        url = ""
+        stage_url = ""
+        path = ""
         defaultProfilePage = eaglenetIdMap[id]['Default Profile Page']
         sadeaProfilePage = sadeaMap[id]['full url'] if id in sadeaMap else None
         if defaultProfilePage is not None and isinstance(defaultProfilePage, str) and defaultProfilePage.strip() != '':
             url_val = defaultProfilePage.strip().lower()
+            path = "/content/au" + url_val.replace('https://www.american.edu', '').replace('.cfm', '')
+            stage_url = 'https://aem-stage.american.edu' + url_val if url_val.startswith('/') else url_val
+            stage_url = stage_url.replace('https://www.american.edu', 'https://aem-stage.american.edu').replace('.cfm', '')
             url_val = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
             print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
-            cfs.append({
-                "url": url_val,
-            })
-        elif sadeaProfilePage is not None and isinstance(sadeaProfilePage, str) and sadeaProfilePage.strip() != '':
-            url_val = sadeaProfilePage.strip()
-            print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
-            cfs.append({
-                "url": url_val,
-            })
+            url = url_val
         else:
             print(f"! Eaglenet ID {id} has no Default Profile Page")
             #log_file.write(f"! Eaglenet ID {id} has no Default Profile Page\n")
@@ -130,21 +133,42 @@ def expand_elements():
                 if url_val == '':
                     continue
                 hasProfile = True
-                url_val = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
+                stage_url = 'https://aem-stage.american.edu' + url_val if url_val.startswith('/') else url_val
+                stage_url = stage_url.replace('https://www.american.edu', 'https://aem-stage.american.edu').replace('.cfm', '')
+                path = "/content/au" + url_val.replace('https://www.american.edu', '').replace('.cfm', '')
+                url = 'https://www.american.edu' + url_val if url_val.startswith('/') else url_val
                 print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
-                cfs.append({
-                    "url": url_val,
-                })  
-            if not hasProfile:
-                print(f"! Eaglenet ID {id} has no valid Additional Profile Pages")
-                log_file.write(f"Profile page missing in ROT report:     {id}\n")
 
-        print(f"✅ Processed #{row_idx_place}/{len(idsToProcess)}: {url_val}")
-        print("----------------------------------")
+        if url == "" and sadeaProfilePage is not None and isinstance(sadeaProfilePage, str) and sadeaProfilePage.strip() != '':
+            url_val = sadeaProfilePage.strip()
+            stage_url = 'https://aem-stage.american.edu' + url_val if url_val.startswith('/') else url_val
+            stage_url = stage_url.replace('https://www.american.edu', 'https://aem-stage.american.edu').replace('.cfm', '')
+            path = "/content/au" + url_val.replace('https://www.american.edu', '').replace('.cfm', '')
+            print(f"🔍 Processing Eaglenet ID {id} → {url_val}")
+            url = url_val
+
+        if not url or url == "":
+            print(f"! Eaglenet ID {id} has no valid Additional Profile Pages")
+            log_file.write(f"Profile page missing in ROT report:     {id}\n")
+            failedIds.append({
+                "id": id,
+                "reason": "Profile page missing in ROT report and Sadea list"
+            })
+        else:
+            cfs.append({
+                "url": url,
+                "id": id,
+                "stage url": stage_url,
+                "path": '"' + path + '",',
+            })
+            print(f"✅ Processed #{row_idx_place}/{len(idsToProcess)}: {url}")
+            print("----------------------------------")
 
     # --- Save CF Output ---
     cf_out_df = pd.DataFrame(cfs)
     cf_out_df.to_excel(CF_OUTPUT_FILE_NAME, index=False)
+    failedIds_df = pd.DataFrame(failedIds)
+    failedIds_df.to_excel("failed_ids.xlsx", index=False)
     print(f"✅ CF Output written to {CF_OUTPUT_FILE_NAME}")
     log_file.write(f"O CF Output written to {CF_OUTPUT_FILE_NAME}\n")
     log_file.close()

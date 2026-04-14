@@ -55,19 +55,28 @@ def get_relevant_classes(css_parser, classList):
     return relevant_classes
 
 def invalidHtml(section):
-    # return true if dl, dt, form, or table exist
-    if section.css.select_one("dl, dt, form, table") is not None:
+        # return true if dl, dt, form, or table exist
+    if section.select_one("dl, dt, form, table") is not None:
         return True
     # return true if multiple img or figure exist
-    if len(section.css.select("img")) > 1 or len(section.css.select("figure")) > 1:
+    if len(section.select("img")) > 1 or len(section.select("figure")) > 1:
         return True
     # return true if multiple blockquotes exist
-    if len(section.css.select("blockquote")) > 1:
+    if len(section.select("blockquote")) > 1:
         return True
     # return true if img parent is not figure
-    for img in section.css.select("img"):
+    for img in section.select("img"):
         if img.parent.name != "figure":
             return True
+    
+    # === ADDED: return true if has inline buttons (Jump To links) ===
+    paragraphs = section.select("p")
+    for p in paragraphs:
+        strong_text = p.find("strong")
+        has_buttons = len(p.select("a.btn")) > 0
+        if strong_text and "Jump To" in strong_text.get_text() and has_buttons:
+            return True
+    
     return False
 
 def expand_elements(
@@ -159,7 +168,9 @@ def expand_elements(
                                             if cls not in class_list:
                                                 class_list.append(cls)
                             relevant_css = get_relevant_classes(css_parser, class_list)
-                            rawHtml = f"\n<style>\n{relevant_css}</style>" + rawHtml
+                            rawHtmlCandidate = f"\n<style>\n{relevant_css}</style>" + rawHtml
+                            rawHtml = rawHtmlCandidate if rawHtmlCandidate.__len__() < 32000 else rawHtml
+
 
                             cfs.append({
                                 "path": convert_url_to_path(url_val),   
@@ -190,6 +201,7 @@ def expand_elements(
 
     # --- Save CF Output ---
     cf_out_df = pd.DataFrame(cfs)
+    print(f"{cfs}")
     cf_out_df.to_excel(cf_output_file_name, index=False)
     print(f"✅ CF Output written to {cf_output_file_name}")
 
